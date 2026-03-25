@@ -1,0 +1,11 @@
+# Protection de la documentation
+# Accès bloqué depuis le web, mais accessible en SSH/FTP
+
+Order Allow,Deny
+Deny from all
+
+# Alternative : si vous voulez un accès protégé par mot de passe
+# AuthType Basic
+# AuthName "Documentation privée"
+# AuthUserFile /home/rodz1475/sbn.soon22.fr/docs/.htpasswd
+# Require valid-user

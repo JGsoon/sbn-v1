@@ -1,0 +1,27 @@
+#!/bin/bash
+################################################################################
+# SBN v1.0 - Configuration du script webhook
+#
+# IMPORTANT: Copiez ce fichier vers "config.sh" et modifiez les valeurs
+#            cp config.sh.example config.sh
+#
+# @package SBN
+# @version 1.0.0
+################################################################################
+
+# URL de votre instance SBN (webhook endpoint)
+# Exemple: https://votre-domaine.fr/api/webhook
+SBN_API_URL="https://votre-domaine.fr/api/webhook"
+
+# Token API de votre société
+# Vous pouvez générer ce token depuis l'interface SBN dans:
+# Paramètres > API > Tokens
+SBN_API_TOKEN="votre-token-api-ici"
+
+# Mode debug (true/false)
+# Active les logs détaillés dans la console et le fichier webhook.log
+SBN_DEBUG="false"
+
+# Timeout pour les requêtes HTTP (en secondes)
+# Par défaut: 30 secondes
+SBN_TIMEOUT="30"

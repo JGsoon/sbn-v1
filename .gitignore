@@ -1,0 +1,62 @@
+# Environnement
+.env
+.env.local
+.env.*.local
+.env.production
+.env.production.real
+.claude/
+*.rar
+*.zip
+tools/test-db.php
+
+# Dependances
+/vendor/
+node_modules/
+composer.lock
+package-lock.json
+
+# IDE et éditeurs
+.vscode/
+.idea/
+*.sublime-*
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+/logs/
+storage/logs/*.log
+
+# Cache
+/cache/
+/tmp/
+storage/cache/*
+!storage/cache/.gitkeep
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Backup
+*.bak
+*.backup
+*.tmp
+*.temp
+*.sql.gz
+*.sql.zip
+database/backups/
+
+# Uploads
+public/uploads/*
+!public/uploads/.gitkeep
+
+# PHP
+*.php~
+.phpunit.result.cache

@@ -1,0 +1,36 @@
+#!/bin/bash
+###############################################################################
+# SBN Backup Notifier - Configuration
+#
+# Ce fichier contient votre configuration personnalisée.
+# Il a été généré automatiquement lors du téléchargement du package.
+###############################################################################
+
+# URL de l'API SBN
+API_URL="{{API_URL}}"
+
+# Votre token API (pré-configuré)
+API_TOKEN="{{API_TOKEN}}"
+
+# Informations du compte
+COMPANY_NAME="{{COMPANY_NAME}}"
+USER_EMAIL="{{USER_EMAIL}}"
+
+# Options de logging
+LOG_RETENTION_DAYS=30
+
+# Version du package
+PACKAGE_VERSION="1.0.0"
+
+###############################################################################
+# NE PAS MODIFIER EN DESSOUS DE CETTE LIGNE
+###############################################################################
+
+# Vérification de la configuration
+if [ -z "$API_TOKEN" ]; then
+    echo "ATTENTION: API_TOKEN n'est pas configuré !"
+fi
+
+if [ -z "$API_URL" ]; then
+    echo "ATTENTION: API_URL n'est pas configuré !"
+fi

@@ -1,0 +1,43 @@
+#!/bin/bash
+# SBN Backup Notifier - Installation Script
+
+PACKAGE="SBNBackupNotifier"
+INSTALL_DIR="/var/packages/${PACKAGE}/target"
+LOG_FILE="/var/log/sbn-installer.log"
+
+log_message() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
+}
+
+case $1 in
+    preinst)
+        log_message "Starting pre-installation..."
+        exit 0
+        ;;
+    postinst)
+        log_message "Starting post-installation..."
+
+        # Créer les répertoires nécessaires
+        mkdir -p "${INSTALL_DIR}/logs"
+        chmod 755 "${INSTALL_DIR}"
+        chmod 755 "${INSTALL_DIR}/webhook.sh"
+
+        log_message "Installation completed successfully"
+        exit 0
+        ;;
+    preuninst)
+        log_message "Starting pre-uninstallation..."
+        exit 0
+        ;;
+    postuninst)
+        log_message "Starting post-uninstallation..."
+
+        # Nettoyer les logs (optionnel)
+        # rm -rf "${INSTALL_DIR}/logs"
+
+        log_message "Uninstallation completed"
+        exit 0
+        ;;
+esac
+
+exit 0

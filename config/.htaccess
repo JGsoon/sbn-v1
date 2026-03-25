@@ -1,0 +1,5 @@
+# Protection du dossier config
+# Aucun accès direct depuis le web
+
+Order deny,allow
+Deny from all

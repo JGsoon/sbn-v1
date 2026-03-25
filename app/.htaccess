@@ -1,0 +1,3 @@
+# Bloquer l'accès direct au dossier app
+Order deny,allow
+Deny from all

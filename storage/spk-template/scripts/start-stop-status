@@ -1,0 +1,22 @@
+#!/bin/bash
+# SBN Backup Notifier - Service Control Script
+
+PACKAGE="SBNBackupNotifier"
+INSTALL_DIR="/var/packages/${PACKAGE}/target"
+PID_FILE="${INSTALL_DIR}/sbn.pid"
+
+case $1 in
+    start)
+        # Ce package ne démarre pas de daemon, il utilise les webhooks
+        exit 0
+        ;;
+    stop)
+        exit 0
+        ;;
+    status)
+        # Toujours considéré comme en cours d'exécution si installé
+        exit 0
+        ;;
+esac
+
+exit 0
