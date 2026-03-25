@@ -1,0 +1,8 @@
+package="SynoBackupNotifier"
+version="1.0.0"
+os_min_ver="7.0-40000"
+description="Notification de backup Synology vers Laravel"
+maintainer="SBN"
+arch="noarch"
+dsmuidir="ui"
+dsmappname="SynoBackupNotifier"

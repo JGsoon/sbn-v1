@@ -1,0 +1,24 @@
+#!/bin/bash
+
+case "$1" in
+    start)
+        # Ajouter la tâche cron (toutes les heures)
+        CRON_JOB="0 * * * * /var/packages/SBNBackupNotifier/target/sbn-check.sh"
+        (crontab -l 2>/dev/null | grep -v "sbn-check"; echo "$CRON_JOB") | crontab -
+        echo "SBN démarré"
+        exit 0
+        ;;
+    stop)
+        # Retirer la tâche cron
+        crontab -l 2>/dev/null | grep -v "sbn-check" | crontab -
+        echo "SBN arrêté"
+        exit 0
+        ;;
+    status)
+        if crontab -l 2>/dev/null | grep -q "sbn-check"; then
+            exit 0
+        else
+            exit 3
+        fi
+        ;;
+esac
