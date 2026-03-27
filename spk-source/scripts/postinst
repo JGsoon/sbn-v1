@@ -1,0 +1,5 @@
+#!/bin/bash
+INSTALL_DIR="/var/packages/SBNBackupNotifier/target"
+mkdir -p "$INSTALL_DIR/var"
+chmod +x "$INSTALL_DIR/sbn-check.sh"
+exit 0

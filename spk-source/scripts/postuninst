@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf /var/packages/SBNBackupNotifier/target/var
+exit 0

@@ -1,0 +1,3 @@
+#!/bin/bash
+crontab -l 2>/dev/null | grep -v "sbn-check" | crontab -
+exit 0

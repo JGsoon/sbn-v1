@@ -1,17 +1,21 @@
 #!/bin/bash
 
+PACKAGE_NAME="SBNBackupNotifier"
+SCRIPT="/var/packages/$PACKAGE_NAME/target/sbn-check.sh"
+
 case "$1" in
     start)
-        # Ajouter la tâche cron (toutes les heures)
-        CRON_JOB="0 * * * * /var/packages/SBNBackupNotifier/target/sbn-check.sh"
+        # Rendre le script executable
+        chmod +x "$SCRIPT"
+        # Ajouter la tache cron (toutes les heures)
+        CRON_JOB="0 * * * * $SCRIPT"
         (crontab -l 2>/dev/null | grep -v "sbn-check"; echo "$CRON_JOB") | crontab -
-        echo "SBN démarré"
+        # Lancer un premier check immediatement
+        $SCRIPT &
         exit 0
         ;;
     stop)
-        # Retirer la tâche cron
         crontab -l 2>/dev/null | grep -v "sbn-check" | crontab -
-        echo "SBN arrêté"
         exit 0
         ;;
     status)
