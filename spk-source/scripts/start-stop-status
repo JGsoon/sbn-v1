@@ -2,24 +2,24 @@
 
 PACKAGE_NAME="SBNBackupNotifier"
 SCRIPT="/var/packages/$PACKAGE_NAME/target/sbn-check.sh"
+PID_FILE="/var/packages/$PACKAGE_NAME/target/sbn.pid"
 
 case "$1" in
     start)
-        # Rendre le script executable
         chmod +x "$SCRIPT"
-        # Ajouter la tache cron (toutes les heures)
         CRON_JOB="0 * * * * $SCRIPT"
-        (crontab -l 2>/dev/null | grep -v "sbn-check"; echo "$CRON_JOB") | crontab -
-        # Lancer un premier check immediatement
+        (/usr/bin/crontab -l 2>/dev/null | grep -v "sbn-check"; echo "$CRON_JOB") | /usr/bin/crontab -
+        echo "running" > "$PID_FILE"
         $SCRIPT &
         exit 0
         ;;
     stop)
-        crontab -l 2>/dev/null | grep -v "sbn-check" | crontab -
+        /usr/bin/crontab -l 2>/dev/null | grep -v "sbn-check" | /usr/bin/crontab -
+        rm -f "$PID_FILE"
         exit 0
         ;;
     status)
-        if crontab -l 2>/dev/null | grep -q "sbn-check"; then
+        if [ -f "$PID_FILE" ]; then
             exit 0
         else
             exit 3
