@@ -1,19 +1,24 @@
-#!/bin/bash
+<?php
+// C:\xampp\htdocs\sbn-v1\fix-spk.php
+
+$base = 'C:/xampp/htdocs/sbn-v1/spk-source';
+
+file_put_contents("$base/target/sbn-check.sh", '#!/bin/bash
 
 CONFIG="/var/packages/SBNBackupNotifier/target/etc/config.json"
 LOG_FILE="/var/packages/SBNBackupNotifier/target/var/sbn.log"
-API_KEY=$(grep "api_key" "$CONFIG" | cut -d'"' -f4)
-SERVER_URL=$(grep "server_url" "$CONFIG" | cut -d'"' -f4)
+API_KEY=$(grep "api_key" "$CONFIG" | cut -d\'"\' -f4)
+SERVER_URL=$(grep "server_url" "$CONFIG" | cut -d\'"\' -f4)
 
 mkdir -p "$(dirname "$LOG_FILE")"
 
-log() { echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"; }
+log() { echo "[$(date +\'%Y-%m-%d %H:%M:%S\')] $1" >> "$LOG_FILE"; }
 
 log "=== SBN Check Start ==="
 
 HOSTNAME=$(hostname)
 SERIAL=$(cat /proc/sys/kernel/syno_serial 2>/dev/null || echo "unknown")
-DSM_VERSION=$(cat /etc.defaults/VERSION 2>/dev/null | grep productversion | cut -d'"' -f2)
+DSM_VERSION=$(cat /etc.defaults/VERSION 2>/dev/null | grep productversion | cut -d\'"\' -f2)
 
 HB_LOGS=""
 if [ -f /var/log/synolog/synobackup.log ]; then
@@ -48,3 +53,6 @@ log "HTTP $HTTP_CODE - $BODY"
 log "=== SBN Check End ==="
 
 tail -500 "$LOG_FILE" > "$LOG_FILE.tmp" && mv "$LOG_FILE.tmp" "$LOG_FILE"
+');
+
+echo "OK - sbn-check.sh corrige\n";
